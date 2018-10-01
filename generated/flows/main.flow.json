@@ -14,16 +14,18 @@
     {
       "id": "bda0320009",
       "name": "welcome",
-      "onEnter": ["say #!builtin_text-pSsHWg", "getTotalNumberOfConversations {}"],
+      "onEnter": [
+        "say #!builtin_text-pSsHWg"
+      ],
       "onReceive": null,
       "next": [
         {
-          "condition": "state.$r === 0",
+          "condition": "event.nlu.intent.is('Yes')",
           "node": "first-time"
         },
         {
-          "condition": "state.$r > 0",
-          "node": "many-times"
+          "condition": "event.nlu.intent.is('No')",
+          "node": "forget-my-name"
         }
       ]
     },
@@ -31,14 +33,9 @@
       "id": "7099199f90",
       "name": "first-time",
       "next": [],
-      "onEnter": ["say #!builtin_text-AY5SSW", "say #!builtin_text-X069Le"],
-      "onReceive": null
-    },
-    {
-      "id": "c69ee2d71f",
-      "name": "many-times",
-      "next": [],
-      "onEnter": ["say #!builtin_text-bFsOmf"],
+      "onEnter": [
+        "say #!builtin_text-AY5SSW"
+      ],
       "onReceive": null
     },
     {
@@ -47,23 +44,21 @@
       "next": [],
       "onEnter": [
         "say #!builtin_text-TtzrCV",
-        "resetUserVariable {\"name\":\"nickname\"}",
-        "say #!builtin_text-kKQ8C3"
+        "resetUserVariable {\"name\":\"nickname\"}"
       ],
       "onReceive": null
     },
     {
       "id": "a54a82eb7c",
       "name": "entry",
-      "onEnter": ["getUserVariable {\"name\":\"nickname\",\"output\":\"$r\"}"],
+      "onEnter": [
+        "getUserVariable {\"name\":\"nickname\",\"output\":\"$r\"}",
+        "say #!builtin_text-JoLLMq"
+      ],
       "onReceive": null,
       "next": [
         {
-          "condition": "state.$r !== null",
-          "node": "welcome"
-        },
-        {
-          "condition": "true",
+          "condition": "always",
           "node": "ask-name"
         }
       ]
@@ -77,7 +72,9 @@
           "node": "welcome"
         }
       ],
-      "onEnter": ["say #!builtin_text-z0J9qh"],
+      "onEnter": [
+        "say #!builtin_text-z0J9qh"
+      ],
       "onReceive": [
         "setUserVariable {\"name\":\"nickname\",\"value\":\"{{event.text}}\",\"expiry\":\"never\"}",
         "getUserVariable {\"name\":\"nickname\",\"output\":\"$r\"}"

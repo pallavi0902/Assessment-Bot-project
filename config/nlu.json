@@ -3,5 +3,8 @@
   "entitiesDir": "./generated/entities",
   "provider": "native",
   "debugModeEnabled": false,
-  "minimumConfidence": "0.3"
+  "minimumConfidence": "0.3",
+  "recastToken": "7ce165b98cebfda0ee7c624188a02254",
+  "recastUserSlug": "pallavi1994",
+  "recastBotSlug": "bottest3"
 }
